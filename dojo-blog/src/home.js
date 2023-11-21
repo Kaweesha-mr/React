@@ -1,5 +1,5 @@
 //this is use staate hook
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import BlogList from "./BlogList";
 const Home = () => {
 
@@ -27,11 +27,20 @@ const Home = () => {
 
     ])
 
+    const [name,setName] = useState('mario');
 
     const handleDelete = (id) =>{
         const newBlogs = blog.filter(blog => blog.id !== id);
         setBlog(newBlogs);
     }
+
+
+    //when dependancy used it wont run each time
+    //only when name changed it will run
+    useEffect(() => {
+        console.log('use effect ran');
+        console.log(name);
+    }, [name]);
 
     return (  
         <div className="home">
@@ -40,6 +49,7 @@ const Home = () => {
             {/* this can pass values from parent to child parent is home and child is bloglist */}
             {/* this is promps */}
             <BlogList blog = {blog} title = "all blogs"  handleDelete={handleDelete}/>
+            <button onClick={() => setName('luigi')}> Change Name</button>
             
 
         </div>
