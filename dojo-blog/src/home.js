@@ -33,7 +33,9 @@ const Home = () => {
 
             {/* this can pass values from parent to child parent is home and child is bloglist */}
             {/* this is promps */}
-            <BlogList blog = {blog} />
+            <BlogList blog = {blog} title = "all blogs" />
+
+            <BlogList  blog = {blog.filter((blog) => blog.author === 'mario' )} title="mario Blog"/>
 
         </div>
 
