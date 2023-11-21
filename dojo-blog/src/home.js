@@ -1,5 +1,6 @@
 //this is use staate hook
 import { useState } from "react";
+import BlogList from "./BlogList";
 const Home = () => {
 
   
@@ -30,15 +31,9 @@ const Home = () => {
         <div className="home">
 
 
-            {blog.map((blog) => (
-
-                <div className="blog-preview" key={blog.id}>
-                    <h2>{blog.title}</h2>
-                    <p>written by {blog.author}</p>
-
-                </div>
-            ))}
-
+            {/* this can pass values from parent to child parent is home and child is bloglist */}
+            {/* this is promps */}
+            <BlogList blog = {blog} />
 
         </div>
 
