@@ -26,16 +26,21 @@ const Home = () => {
         { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
 
     ])
-    return (  
 
+
+    const handleDelete = (id) =>{
+        const newBlogs = blog.filter(blog => blog.id !== id);
+        setBlog(newBlogs);
+    }
+
+    return (  
         <div className="home">
 
 
             {/* this can pass values from parent to child parent is home and child is bloglist */}
             {/* this is promps */}
-            <BlogList blog = {blog} title = "all blogs" />
-
-            <BlogList  blog = {blog.filter((blog) => blog.author === 'mario' )} title="mario Blog"/>
+            <BlogList blog = {blog} title = "all blogs"  handleDelete={handleDelete}/>
+            
 
         </div>
 
