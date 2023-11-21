@@ -5,13 +5,13 @@ const Home = () => {
 
   
 
-    // //this variable array stores 2 values which will use to pass the value to be change and other to identify it
+    //this variable array stores 2 values which will use to pass the value to be change and other to identify it
     // const [name,setName] = useState('mario')
     // const [age,setAge] = useState(25);
    
     // const handleCLick = () =>{
         
-    //     //this function will change the value of name variable
+         //this function will change the value of name variable
     //     setName('luigi');
     //     setAge(30);
 
@@ -19,13 +19,7 @@ const Home = () => {
     // }
 
 
-    const [blog,setBlog] = useState([
-
-        { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
-        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
-        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
-
-    ])
+    const [blog,setBlog] = useState(null);
 
     const [name,setName] = useState('mario');
 
@@ -37,10 +31,17 @@ const Home = () => {
 
     //when dependancy used it wont run each time
     //only when name changed it will run
+
+
     useEffect(() => {
-        console.log('use effect ran');
-        console.log(name);
-    }, [name]);
+        fetch('http://localhost:8000/blogs')
+        .then(res => {
+            return res.json();
+        })
+        .then(data =>{
+            console.log(data);
+        })
+    }, []);
 
     return (  
         <div className="home">
