@@ -14,12 +14,15 @@ const useFetch = (url) => {
     
     useEffect(() => {
 
-
+        //abort the fetch data at a certain point
         const abortCont = new AbortController();
 
         //this is a end point
         //this is like a get request
-        fetch(url,{ signal: abortCont.signa l })
+
+
+        //!assciate it with each fetch request
+        fetch(url,{ signal: abortCont.signal })
 
         .then(res => {
             console.log(res);
@@ -39,13 +42,25 @@ const useFetch = (url) => {
             setError(null);
         })
         .catch(err =>{
-            setIsPending(false);
-            setError(err.message);
+
+
+
+            //this will pause the error and loading msg when we go to another page
+            if(err.name === 'AbortError'){
+                console.log('fetch aborted');
+            }
+            else{
+                setIsPending(false);
+                setError(err.message);
+
+            }
+
+
         })
 
 
         //use to clean up the fetch
-        return () => console.log('cleanup');
+        return () => abortCont.abort();
     }, [url]);
 
 
