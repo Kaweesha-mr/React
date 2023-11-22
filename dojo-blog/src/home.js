@@ -21,8 +21,6 @@ const Home = () => {
 
     const [blog,setBlog] = useState(null);
 
-    const [name,setName] = useState('mario');
-
     const handleDelete = (id) =>{
         const newBlogs = blog.filter(blog => blog.id !== id);
         setBlog(newBlogs);
@@ -34,12 +32,26 @@ const Home = () => {
 
 
     useEffect(() => {
+        console.log("use effect run");
+
+        //this is a end point
+        //this is like a get request
         fetch('http://localhost:8000/blogs')
+
+        //
         .then(res => {
+            
+            //this pass the jason dat in to js object
+            //and return it
             return res.json();
         })
+
         .then(data =>{
+        
             console.log(data);
+            setBlog(data.blogs)
+            
+        
         })
     }, []);
 
@@ -49,8 +61,7 @@ const Home = () => {
 
             {/* this can pass values from parent to child parent is home and child is bloglist */}
             {/* this is promps */}
-            <BlogList blog = {blog} title = "all blogs"  handleDelete={handleDelete}/>
-            <button onClick={() => setName('luigi')}> Change Name</button>
+            {blog && <BlogList blog = {blog} title = "all blogs"  handleDelete={handleDelete}/>}
             
 
         </div>
