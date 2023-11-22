@@ -21,6 +21,11 @@ const Home = () => {
 
     const [blog,setBlog] = useState(null);
 
+    //use to show loading msg until data is fetched
+    const [isPending,setIsPending] = useState(true);
+
+    const [error,setError]  = useState(null);
+
     const handleDelete = (id) =>{
         const newBlogs = blog.filter(blog => blog.id !== id);
         setBlog(newBlogs);
@@ -40,6 +45,12 @@ const Home = () => {
 
         //
         .then(res => {
+
+            console.log(res);
+
+            if(!res.ok){
+                throw Error('could not fetch the data for that resource');
+            }
             
             //this pass the jason dat in to js object
             //and return it
@@ -48,20 +59,33 @@ const Home = () => {
 
         .then(data =>{
         
-            console.log(data);
             setBlog(data)
-            
-        
+
+            //this will stop the loading
+            setIsPending(false);
+
+            setError(null);
         })
+        .catch(err =>{
+            setIsPending(false);
+            setError(err.message);
+            
+        })
+
     }, []);
 
     return (  
         <div className="home">
 
 
+            { error && <div>{error}</div>}
+            {isPending && <div>Loading...</div>}
+
             {/* this can pass values from parent to child parent is home and child is bloglist */}
             {/* this is promps */}
             {blog && <BlogList blog = {blog} title = "all blogs"  handleDelete={handleDelete}/>}
+
+
             
 
         </div>
