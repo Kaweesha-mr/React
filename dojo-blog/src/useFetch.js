@@ -42,9 +42,6 @@ const useFetch = (url) => {
             setError(null);
         })
         .catch(err =>{
-
-
-
             //this will pause the error and loading msg when we go to another page
             if(err.name === 'AbortError'){
                 console.log('fetch aborted');
@@ -52,10 +49,7 @@ const useFetch = (url) => {
             else{
                 setIsPending(false);
                 setError(err.message);
-
             }
-
-
         })
 
 
