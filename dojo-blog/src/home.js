@@ -36,7 +36,7 @@ const Home = () => {
 
         //this is a end point
         //this is like a get request
-        fetch('http://localhost:8000/blogs')
+        fetch('http://localhost:8001/blogs')
 
         //
         .then(res => {
@@ -49,7 +49,7 @@ const Home = () => {
         .then(data =>{
         
             console.log(data);
-            setBlog(data.blogs)
+            setBlog(data)
             
         
         })
