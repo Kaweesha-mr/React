@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const Create = () => {
 
     const [title, setTitle] = useState('');
     const [body, setData] = useState('');
     const [author, setAuthor] = useState('mario');
+    const history = useHistory();
 
     const handleSubmit = (e) =>{
         //prevent windows from refresh when submit button clicked
@@ -18,7 +20,8 @@ const Create = () => {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(blog)
         }).then(() => {
-            console.log('new blog added');    
+            console.log('new blog added');   
+            history.push('/'); 
     })
     }
     return ( 
