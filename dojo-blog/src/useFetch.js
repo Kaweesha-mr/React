@@ -13,9 +13,13 @@ const useFetch = (url) => {
     const [error,setError]  = useState(null);
     
     useEffect(() => {
+
+
+        const abortCont = new AbortController();
+
         //this is a end point
         //this is like a get request
-        fetch(url)
+        fetch(url,{ signal: abortCont.signa l })
 
         .then(res => {
             console.log(res);
@@ -38,6 +42,10 @@ const useFetch = (url) => {
             setIsPending(false);
             setError(err.message);
         })
+
+
+        //use to clean up the fetch
+        return () => console.log('cleanup');
     }, [url]);
 
 
