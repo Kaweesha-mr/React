@@ -15,9 +15,6 @@ class Navbar extends Component {
         const {isLightTheme, light, dark} = this.context;
 
         const theme = isLightTheme ? light : dark;
-
-
-
         return (
             <nav style={ { background:theme.ui, color: theme.syntax}}>
                 <h1>Context App</h1>
