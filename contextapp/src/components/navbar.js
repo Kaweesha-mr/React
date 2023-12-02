@@ -10,6 +10,9 @@ class Navbar extends Component {
     state = {  } 
     render() { 
         console.log(this.context);
+
+        //destructuring the context and store the values in variables
+        const {isLightTheme, light, dark} = this.context;
         return (
             <nav>
                 <h1>Context App</h1>
