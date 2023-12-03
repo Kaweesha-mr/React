@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
-import uuid from 'uuid/v1';
+import { v1 as uuidv1 } from 'uuid';
+import NewSongForm from './NewSongForm';
+
+
+//!useState is used to store and manage data that can chanage over time
 
 const SongList = () => {
    const [songs,setSongs] =  useState([
@@ -9,8 +13,8 @@ const SongList = () => {
     ]
     );
 
-    const addSong = () => {
-        setSongs([...songs, {title: 'new song', id: uuid()}]);
+    const addSong = (title) => {
+        setSongs([...songs, {title: title, id: uuidv1()}]);
     }
     return (  
         <div className="song-list">
@@ -21,7 +25,9 @@ const SongList = () => {
                 })}
             </ul>
 
-            <button onClick={addSong}> add a Song</button>
+
+            {/* this will give chance to use the addSong function in NewSongForm */}
+           <NewSongForm addSong={addSong}/>
 
         </div>
     );
