@@ -30,11 +30,15 @@ const SongList = () => {
     // !})
 
     //?when we want to update only once when data is changed do this
+    //!when you put something inside [] it will run only once when that changes
 
     useEffect(()=> {
-    // !    console.log('useEffect hook ran', songs);
+        console.log('useEffect hook ran', songs);
 
-    // !})
+    },[age])
+
+
+
     return (  
         <div className="song-list">
             <ul>
